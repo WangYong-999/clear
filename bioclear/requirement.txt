@@ -1,0 +1,4 @@
+pillow
+matplotlib
+kornia
+opencv-python

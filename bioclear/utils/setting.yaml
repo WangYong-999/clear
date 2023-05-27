@@ -1,0 +1,222 @@
+#:=======================render========================
+
+working_root: "/home/ubuntu/Users/yong/.clear/DREDS/DepthSensorSimulator"
+CAD_model_root_path: "/home/ubuntu/Users/yong/.clear/DREDS/DepthSensorSimulator/cad_model/bioobj"
+env_map_path: "/home/ubuntu/Users/yong/.clear/DREDS/DepthSensorSimulator/envmap_lib/train"
+output_root_path: "/home/ubuntu/Users/yong/.clear/bioclear/utils/rendered_output"
+DEVICE_LIST: [0]
+
+render_mode_list: {'RGB': 1, 'IR': 1, 'NOCS': 1, 'Mask': 1, 'Normal': 1} #渲染输出，0代表不输出，1代表输出
+
+my_material_randomize_mode: 'transparent' #transparent, specular, mixed, raw
+
+# set depth sensor parameter
+camera_width: 1280
+camera_height: 720
+camera_fov: 1.2440706908215582
+baseline_distance: 0.055
+num_frame_per_scene: 1    # number of cameras per scene
+LIGHT_EMITTER_ENERGY: 5
+LIGHT_ENV_MAP_ENERGY_IR: 0.035
+LIGHT_ENV_MAP_ENERGY_RGB: 0.5
+# set background parameter
+background_size: 3.
+background_position: [0., 0., 0.]
+background_scale: [1., 1., 1.]
+
+# set camera randomized paramater
+start_point_range: [[0.5, 0.95], [-0.6, 0.6, -0.6, 0.6]]
+up_range: [-0.18, -0.18, -0.18, 0.18]
+look_at_range: [-0.05,0.05,-0.05,0.05,-0.05,0.05]
+
+
+g_syn_light_num_lowbound: 4
+g_syn_light_num_highbound: 6
+g_syn_light_dist_lowbound: 8
+g_syn_light_dist_highbound: 12
+g_syn_light_azimuth_degree_lowbound: 0
+g_syn_light_azimuth_degree_highbound: 360
+g_syn_light_elevation_degree_lowbound: 0
+g_syn_light_elevation_degree_highbound: 90
+g_syn_light_energy_mean: 3
+g_syn_light_energy_std: 0.5
+g_syn_light_environment_energy_lowbound: 0
+g_syn_light_environment_energy_highbound: 1
+
+
+g_shape_synset_name_pairs_all: {'02691156': 'aeroplane',
+                                '02747177': 'ashtray',
+                                '02773838': 'backpack',
+                                '02801938': 'basket',
+                                '02808440': 'tub',  # bathtub
+                                '02818832': 'bed',
+                                '02828884': 'bench',
+                                '02834778': 'bicycle',
+                                '02843684': 'mailbox', # missing in objectnet3d, birdhouse, use view distribution of mailbox
+                                '02858304': 'boat',
+                                '02871439': 'bookshelf',
+                                '02876657': 'bottle',
+                                '02880940': 'bowl', # missing in objectnet3d, bowl, use view distribution of plate
+                                '02924116': 'bus',
+                                '02933112': 'cabinet',
+                                '02942699': 'camera',
+                                '02946921': 'can',
+                                '02954340': 'cap',
+                                '02958343': 'car',
+                                '02992529': 'cellphone',
+                                '03001627': 'chair',
+                                '03046257': 'clock',
+                                '03085013': 'keyboard',
+                                '03207941': 'dishwasher',
+                                '03211117': 'tvmonitor',
+                                '03261776': 'headphone',
+                                '03325088': 'faucet',
+                                '03337140': 'filing_cabinet',
+                                '03467517': 'guitar',
+                                '03513137': 'helmet',
+                                '03593526': 'jar',
+                                '03624134': 'knife',
+                                '03636649': 'lamp',
+                                '03642806': 'laptop',
+                                '03691459': 'speaker',
+                                '03710193': 'mailbox',
+                                '03759954': 'microphone',
+                                '03761084': 'microwave',
+                                '03790512': 'motorbike',
+                                '03797390': 'mug',  # missing in objectnet3d, mug, use view distribution of cup
+                                '03928116': 'piano',
+                                '03938244': 'pillow',
+                                '03948459': 'rifle',  # missing in objectnet3d, pistol, use view distribution of rifle
+                                '03991062': 'pot',
+                                '04004475': 'printer',
+                                '04074963': 'remote_control',
+                                '04090263': 'rifle',
+                                '04099429': 'road_pole',  # missing in objectnet3d, rocket, use view distribution of road_pole
+                                '04225987': 'skateboard',
+                                '04256520': 'sofa',
+                                '04330267': 'stove',
+                                '04379243': 'diningtable',  # use view distribution of dining_table
+                                '04401088': 'telephone',
+                                '04460130': 'road_pole',  # missing in objectnet3d, tower, use view distribution of road_pole
+                                '04468005': 'train',
+                                '04530566': 'washing_machine',
+                                '04554684': 'dishwasher',
+                                '11469722': 'biotube',
+                                '11469723': 'biobottle',
+                                '11469724': 'bioxitou',}  # washer, use view distribution of dishwasher
+
+
+selected_class: ['aeroplane', 'bottle', 'bowl', 'camera', 'can', 'car', 'mug','bioxitou','biobottle','biotube']
+
+g_synset_name_scale_pairs: {'aeroplane': [0.25, 0.31],
+                             'bottle': [0.21, 0.27], 
+                             'bowl': [0.15, 0.20],
+                             'camera': [0.17, 0.23], 
+                             'can': [0.13, 0.17],
+                             'car': [0.21, 0.25], 
+                             'mug': [0.13, 0.19],
+                             'other': [0.13, 0.22],
+                             'bioxitou': [2.5, 2.5],
+                             'biobottle': [2.0, 2.0],
+                             'biotube': [2.5, 2.5],} 
+
+g_synset_name_label_pairs: {'aeroplane': 7,
+                             'bottle': 1,
+                             'bowl': 2,   
+                             'camera': 3,
+                             'can': 4,
+                             'car': 5,
+                             'mug': 6,    
+                             'other': 0,
+                             'bioxitou': 8,
+                             'biobottle': 9,
+                             'biotube': 10}   
+
+material_class_instance_pairs: {'specular': ['metal', 'porcelain', 'plasticsp', 'paintsp'], 'transparent': ['glass'], 'diffuse': ['plastic', 'rubber', 'paper', 'leather', 'wood', 'clay', 'fabric'], 'background': ['background']}
+
+class_material_pairs: {'specular': ['bottle', 'bowl', 'can', 'mug', 'aeroplane', 'car', 'other'], 'transparent': ['bottle', 'bowl', 'mug', 'bioxitou','biobottle','biotube'], 'diffuse': ['bottle', 'bowl', 'can', 'mug', 'camera', 'aeroplane', 'car', 'other']}
+
+material_name_label_pairs: {'raw': 0, 'diffuse': 1, 'transparent': 2, 'specular': 3}
+
+max_instance_num: 20
+
+
+#:=======================Stereo Match========================
+
+mu: 0.0     #左右图像的正态分布的噪声均值
+sigma: 1.0  #左右图像的正态分布的噪声方差
+
+#:=======================Data Process========================
+
+# 将创建新文件夹的位置
+NEW_DATASET_PATHS: {
+    'root': '/home/ubuntu/Users/yong/.clear/bioclear/utils/rendered_output/biodataset',  # To be filled by commandline args. Eg value: '../data/dataset/milk-bottles'
+    'source-files': ''
+}
+
+# 将合成数据组织到其中的各种子文件夹。
+#这些文件夹将被创建，带有给定后缀的文件将被移动到其中。
+SUBFOLDER_MAP_SYNTHETIC: {
+    'rgb-files': {
+        'postfix': '-rgb.jpg',
+        'folder-name': 'rgb-imgs'
+    },
+    'depth-files': {
+        'postfix': '-depth.exr',
+        'folder-name': 'depth-imgs'
+    },
+    'json-files': {
+        'postfix': '-masks.json',
+        'folder-name': 'json-files'
+    },
+    'world-normals': {
+        'postfix': '-normals.exr',
+        'folder-name': 'world-normals'
+    },
+    'variant-masks': {
+        'postfix': '-variantMasks.exr',
+        'folder-name': 'variant-masks'
+    },
+    'component-masks': {
+        'postfix': '-componentMasks.exr',
+        'folder-name': 'component-masks'
+    },
+    'camera-normals': {
+        'postfix': '-cameraNormals.exr',
+        'folder-name': 'camera-normals'
+    },
+    'camera-normals-rgb': {
+        'postfix': '-cameraNormals.png',
+        'folder-name': 'camera-normals/rgb-visualizations'
+    },
+    'outlines': {
+        'postfix': '-outlineSegmentation.png',
+        'folder-name': 'outlines'
+    },
+    'outlines-rgb': {
+        'postfix': '-outlineSegmentationRgb.png',
+        'folder-name': 'outlines/rgb-visualizations'
+    },
+    'depth-files-rectified': {
+        'postfix': '-depth-rectified.exr',
+        'folder-name': 'depth-imgs-rectified'
+    },
+    'segmentation-masks': {
+        'postfix': '-segmentation-mask.png',
+        'folder-name': 'segmentation-masks'
+    }
+}
+
+# 将真实图像组织到其中的各种子文件夹
+SUBFOLDER_MAP_REAL: {
+    'rgb-files': {
+        'postfix': '-rgb.jpg',
+        'folder-name': 'rgb-imgs'
+    },
+    'depth-files': {
+        'postfix': '-depth.npy',
+        'folder-name': 'depth-imgs'
+    },
+}
+
+

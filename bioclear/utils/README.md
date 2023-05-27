@@ -1,0 +1,1 @@
+# os.system('/home/ubuntu/Users/yong/.clear/bioclear/thirty/blender-2.93.3-linux-x64/2.93/python/bin/python3.9 -m pip install PyYAML --target=/home/ubuntu/Users/yong/.clear/bioclear/thirty/blender-2.93.3-linux-x64/2.93/python/lib/python3.9/site-packages/')
